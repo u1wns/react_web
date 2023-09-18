@@ -1,13 +1,28 @@
-import Swal from "sweetalert2";
 import { useState } from "react";
 import "./login.css";
 import Input from "../util/InputFrm";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button1, Button2, Button3 } from "../util/Buttons";
+import axios from "axios";
 
 const Login = () => {
   const [memberId, setMemberId] = useState("");
   const [memberPw, setMemberPw] = useState("");
+  const navigate = useNavigate();
+  const join = () => {
+    navigate("/join");
+  };
+  const login = () => {
+    const member = { memberId, memberPw };
+    axios
+      .post("/member/login", member)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((res) => {
+        console.log(res.data);
+      });
+  };
   return (
     <div className="login-wrap">
       <div className="login-title">LOGIN</div>
@@ -35,10 +50,10 @@ const Login = () => {
         <Link to="#">비밀번호 찾기</Link>
       </div>
       <div className="login-btn-box">
-        <Button2 text="로그인" />
+        <Button1 text="로그인" clickEvent={login} />
       </div>
       <div className="login-btn-box">
-        <Button3 text="회원가입" />
+        <Button2 text="회원가입" clickEvent={join} />
       </div>
     </div>
   );
