@@ -33,3 +33,12 @@
 .join-input-wrap > div > .input {
   width: 70%;
 }
+.check-msg {
+  font-size: 0.8em;
+  width: 70%;
+  align-self: flex-end;
+  color: tomato;
+}
+.join-btn-box {
+  padding: 20px 0px;
+}

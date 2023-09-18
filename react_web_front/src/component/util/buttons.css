@@ -1,0 +1,26 @@
+/* 
+색상 
+#8294C4 rgb(130, 148, 196)
+#ACB1D6 rgb(172, 177, 214)
+#DBDFEA rgb(219, 223, 234)
+#FFEAD2 rgb(255, 234, 210)
+*/
+.btn {
+  width: 100%;
+  padding: 0.7rem;
+  cursor: pointer;
+  border-radius: 5px;
+  font-family: ns-eb;
+  border: none;
+  outline: none;
+  color: #16171b;
+}
+.st1 {
+  background-color: #8294c4;
+}
+.st2 {
+  background-color: #acb1d6;
+}
+.st3 {
+  background-color: #dbdfea;
+}

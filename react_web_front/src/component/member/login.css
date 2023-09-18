@@ -1,0 +1,44 @@
+/* 
+색상 
+#8294C4 rgb(130, 148, 196)
+#ACB1D6 rgb(172, 177, 214)
+#DBDFEA rgb(219, 223, 234)
+#FFEAD2 rgb(255, 234, 210)
+*/
+.login-wrap {
+  width: 400px;
+  margin: 0 auto;
+}
+.login-title {
+  text-align: center;
+  color: #8294c4;
+  font-family: ns-black;
+  font-size: 30px;
+  padding: 50px;
+}
+.input-wrap > label {
+  display: block;
+  padding: 10px 0px;
+  color: #8294c4;
+  font-family: ns-b;
+}
+.search-box {
+  display: flex;
+  align-items: center;
+  margin: 10px 0px;
+}
+.search-box > a {
+  font-size: 0.9em;
+  height: 20px;
+  line-height: 20px;
+}
+.search-box > a:hover {
+  text-decoration: underline;
+}
+.search-box > span {
+  font-size: 22px;
+  transform: rotate(90deg);
+}
+.login-btn-box {
+  margin: 20px 0px;
+}

@@ -40,10 +40,10 @@ const HeaderLink = () => {
   return (
     <div className="header-link">
       <Link to="/login" title="로그인">
-        <span class="material-icons">login</span>
+        <span className="material-icons">login</span>
       </Link>
       <Link to="/join">
-        <span class="material-icons" title="회원가입">
+        <span className="material-icons" title="회원가입">
           person_add_alt
         </span>
       </Link>
