@@ -42,6 +42,7 @@ const HeaderLink = (props) => {
   const isLogin = props.isLogin;
   const setIsLogin = props.setIsLogin;
   const logout = () => {
+    window.localStorage.removeItem("token"); //세션에 들어있는 값을 지워준다.
     setIsLogin(false);
   };
   return (

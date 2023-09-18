@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import Join from "./component/member/Join";
 import Login from "./component/member/Login";
 import { useState } from "react";
+import MemberMain from "./component/member/MemberMain";
 
 function App() {
   const [isLogin, setIsLogin] = useState(false);
@@ -14,6 +15,7 @@ function App() {
         <Routes>
           <Route path="/join" element={<Join />} />
           <Route path="/login" element={<Login setIsLogin={setIsLogin} />} />
+          <Route path="/member/*" element={<MemberMain />} />
         </Routes>
       </div>
       <Footer />
