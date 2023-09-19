@@ -17,4 +17,8 @@
  	<delete id="delete">
  		delete from member_tbl where member_id=#{memberId}
  	</delete>
+ 	
+ 	<update id="changePassword">
+ 		update member_tbl member_pw = #{memberPw} where member_no=#{memberNo}
+ 	</update>
 </mapper>

@@ -4,12 +4,21 @@ import "./memberChangePw.css";
 import { Button2, Button3 } from "../util/Buttons";
 import axios from "axios";
 import Swal from "sweetalert2";
-const MemberChagnePw = () => {
+import { useNavigate } from "react-router-dom";
+
+const MemberChagnePw = (props) => {
   const [isPwauth, setIsPwauth] = useState(false);
   const [currPw, setCurrPw] = useState("");
   const [memberPw, setMemberPw] = useState("");
   const [memberPwRe, setMemberPwRe] = useState("");
   const token = window.localStorage.getItem("token");
+  const member = props.member;
+  const setMember = props.setMember;
+  const navigate = useNavigate();
+  const setMemberPassword = (data) => {
+    member.memberPassword = data;
+    setMember({ ...member });
+  };
   const pwCheck = () => {
     axios
       .post(
@@ -32,7 +41,30 @@ const MemberChagnePw = () => {
         }
       });
   };
-  const changePw = () => {};
+  const changePw = (props) => {
+    const setIsLogin = props.setIsLogin;
+
+    const token = window.localStorage.getItem("token");
+    axios
+      .post("/member/changePassword", member, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then((res) => {
+        Swal.fire({
+          icon: "success",
+          title: "비밀번호가 변경되었습니다.",
+        });
+      })
+      .catch((res) => {
+        if (res.response.status === 403) {
+          navigate("/login");
+          window.localStorage.removeItem("token");
+          setIsLogin(false);
+        }
+      });
+  };
   return (
     <div className="my-content-wrap">
       <div className="my-content-title">비밀번호 변경</div>
