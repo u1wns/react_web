@@ -47,9 +47,9 @@ public class MemberService {
 	public int changePhone(Member member) {
 		return memberDao.changePhone(member);
 	}
-
-	public int deleteMember(int memberNo) {
+	@Transactional
+	public int delete(String memberId) {
 		// TODO Auto-generated method stub
-		return memberDao.deleteMember(memberNo);
+		return memberDao.delete(memberId);
 	}
 }

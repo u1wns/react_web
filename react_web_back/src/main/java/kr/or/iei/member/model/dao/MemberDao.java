@@ -13,6 +13,6 @@ public interface MemberDao {
 
 	int changePhone(Member member);
 
-	int deleteMember(int memberNo);
+	int delete(String memberId);
 
 }

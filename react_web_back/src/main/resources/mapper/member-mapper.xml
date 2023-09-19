@@ -14,7 +14,7 @@
  		update member_tbl set member_phone = #{memberPhone} where member_no=#{memberNo}
  	</update>
  	
- 	<delete id="deleteMember">
- 		delete from member_tbl where member_no=#{memberNo}
+ 	<delete id="delete">
+ 		delete from member_tbl where member_id=#{memberId}
  	</delete>
 </mapper>

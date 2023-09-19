@@ -44,7 +44,6 @@ public class MemberController {
 	@PostMapping(value="/login")
 	public String login(@RequestBody Member member) {
 		String result = memberService.login(member);
-		
 		return result;
 	}
 	@PostMapping(value="/getMember")
@@ -55,11 +54,8 @@ public class MemberController {
 	public int changePhone(@RequestBody Member member) {
 		return memberService.changePhone(member);
 	}
-	@PostMapping(value="/deleteMember")
-	public String deleteMember(Member m) {
-		int memberNo = m.getMemberNo();
-		int result = memberService.deleteMember(memberNo);
-		
-		return null;
+	@PostMapping(value="/delete")
+	public int deleteMember(@RequestAttribute String memberId) {
+		return memberService.delete(memberId);
 	}
 }

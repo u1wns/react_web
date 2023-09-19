@@ -29,7 +29,10 @@ function App() {
         <Routes>
           <Route path="/join" element={<Join />} />
           <Route path="/login" element={<Login setIsLogin={setIsLogin} />} />
-          <Route path="/member/*" element={<MemberMain />} />
+          <Route
+            path="/member/*"
+            element={<MemberMain setIsLogin={setIsLogin} isLogin={isLogin} />}
+          />
         </Routes>
       </div>
       <Footer />

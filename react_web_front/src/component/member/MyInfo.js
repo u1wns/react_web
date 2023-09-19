@@ -8,11 +8,13 @@ const MyInfo = (props) => {
   const navigate = useNavigate();
   const member = props.member;
   const setMember = props.setMember;
+  const setIsLogin = props.setIsLogin;
   const setMemberPhone = (data) => {
     member.memberPhone = data;
     setMember({ ...member });
   };
-  const updateMemberPhone = () => {
+  const updateMemberPhone = (props) => {
+    const setIsLogin = props.setIsLogin;
     const token = window.localStorage.getItem("token");
     axios
       .post("/member/changePhone", member, {
@@ -29,6 +31,8 @@ const MyInfo = (props) => {
       .catch((res) => {
         if (res.response.status === 403) {
           navigate("/login");
+          window.localStorage.removeItem("token");
+          setIsLogin(false);
         }
       });
   };
@@ -43,24 +47,22 @@ const MyInfo = (props) => {
       cancelButtonText: "취소",
     }).then((res) => {
       if (res.isConfirmed) {
-        console.log("탈퇴하기 누른 경우");
-        //탈퇴하기 로직 구현
         axios
-          .post("/member/deleteMember", member, {
+          .post("/member/delete", null, {
             headers: {
               Authorization: "Bearer " + token,
             },
           })
           .then((res) => {
-            Swal.fire({
-              icon: "success",
-              title: "탈퇴 완료",
-            });
-            navigate("/login");
+            window.localStorage.removeItem("token");
+            setIsLogin(false);
+            Swal.fire({ title: "탈퇴 완료" });
           })
           .catch((res) => {
             if (res.response.status === 403) {
-              navigate("/login");
+              console.log("로그인이 풀린 상황");
+              window.localStorage.removeItem("token");
+              setIsLogin(false);
             }
           });
       }
