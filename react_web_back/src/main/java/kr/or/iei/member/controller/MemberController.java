@@ -47,7 +47,7 @@ public class MemberController {
 		
 		return result;
 	}
-	@GetMapping(value="/mypage")
+	@PostMapping(value="/getMember")
 	public Member mypage(@RequestAttribute String memberId) {
 		return memberService.selectOneMember(memberId);
 	}

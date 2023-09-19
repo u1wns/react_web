@@ -1,0 +1,64 @@
+/* 
+색상 
+#8294C4 rgb(130, 148, 196)
+#ACB1D6 rgb(172, 177, 214)
+#DBDFEA rgb(219, 223, 234)
+#FFEAD2 rgb(255, 234, 210)
+*/
+
+.mypage-wrap {
+  width: 1200px;
+  margin: 30px auto;
+}
+.my-title {
+  color: #8294c4;
+  font-size: 24px;
+  font-family: ns-b;
+  padding: 10px 0px;
+  border-bottom: 3px solid #8294c4;
+}
+.my-side {
+  width: 200px;
+}
+.my-side > ul {
+  list-style-type: none;
+  box-sizing: border-box;
+  padding-top: 30px;
+  margin: 0;
+}
+.my-side > ul > li > a {
+  display: block;
+  padding: 10px;
+  color: #8294c4;
+  font-family: ns-b;
+  position: relative;
+}
+.my-side > ul > li > a > span {
+  position: absolute;
+  right: 0;
+}
+.my-side > ul > li > a.active-side {
+  background-color: #8294c4;
+  color: #fff;
+}
+.my-side > ul > li > a.active-side > span {
+  color: #fff;
+}
+
+.my-content {
+  display: flex;
+  justify-content: space-evenly;
+}
+.current-content {
+  width: 900px;
+}
+.my-content-wrap {
+  width: 700px;
+  margin: 0 auto;
+}
+.my-content-title {
+  padding: 30px 0px;
+  color: #8294c4;
+  font-family: ns-b;
+  font-size: 20px;
+}
