@@ -58,4 +58,9 @@ public class MemberController {
 	public int deleteMember(@RequestAttribute String memberId) {
 		return memberService.delete(memberId);
 	}
+	@PostMapping(value="/pwCheck")
+	public int pwCheck(@RequestBody Member member, @RequestAttribute String memberId) {
+		member.setMemberId(memberId);
+		return memberService.pwCheck(member);
+	}
 }

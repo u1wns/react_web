@@ -1,45 +1,86 @@
-import { Button2 } from "../util/Buttons";
+import { useState } from "react";
 import Input from "../util/InputFrm";
 import "./memberChangePw.css";
-
-const updatePassword = () => {
-  const setIsLogin = props.setIsLogin;
+import { Button2, Button3 } from "../util/Buttons";
+import axios from "axios";
+import Swal from "sweetalert2";
+const MemberChagnePw = () => {
+  const [isPwauth, setIsPwauth] = useState(false);
+  const [currPw, setCurrPw] = useState("");
+  const [memberPw, setMemberPw] = useState("");
+  const [memberPwRe, setMemberPwRe] = useState("");
   const token = window.localStorage.getItem("token");
-  axios.post("/member/changePhone", member, {
-    headers: {
-      Authorization: "Bearer " + token,
-    },
-  });
-};
-
-const MemberChangePw = (props) => {
+  const pwCheck = () => {
+    axios
+      .post(
+        "/member/pwCheck",
+        { memberPw: currPw },
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      )
+      .then((res) => {
+        if (res.data === 1) {
+          setIsPwauth(true);
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "비밀번호 틀림.",
+          });
+        }
+      });
+  };
+  const changePw = () => {};
   return (
-    <div className="password-wrap">
-      <div className="password-title">비밀번호 변경</div>
-      <table className="password-tbl">
-        <tobody>
-          <tr>
-            <td>현재 비밀번호 입력</td>
-            <td id="current-password">
-              <div>
-                <Input type="text" />
-                <Button2 text="확인" />
+    <div className="my-content-wrap">
+      <div className="my-content-title">비밀번호 변경</div>
+      <div className="pw-auth">
+        {isPwauth ? (
+          <>
+            <div className="new-pw-input-wrap">
+              <div className="pw-input-wrap">
+                <div>
+                  <label htmlFor="memberPw">새 비밀번호</label>
+                  <Input
+                    type="password"
+                    data={memberPw}
+                    setData={setMemberPw}
+                    content="memberPw"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="memberPwRe">비밀번호 확인</label>
+                  <Input
+                    type="password"
+                    data={memberPwRe}
+                    setData={setMemberPwRe}
+                    content="memberPwRe"
+                  />
+                </div>
               </div>
-            </td>
-          </tr>
-          <tr>
-            <td>새 비밀번호 입력</td>
-            <td id="member-phone">
-              <div>
-                <Input type="text" />
-                <Button2 text="변경하기" clickEvent={updatePassword} />
-              </div>
-            </td>
-          </tr>
-        </tobody>
-      </table>
+            </div>
+            <div className="change-btn-box">
+              <Button2 text="변경하기" clickEvent={changePw} />
+            </div>
+          </>
+        ) : (
+          <div className="pw-input-wrap">
+            <div>
+              <label htmlFor="currPw">현재 비밀번호</label>
+              <Input
+                data={currPw}
+                setData={setCurrPw}
+                type="password"
+                content="currPw"
+              />
+              <Button3 text="확인" clickEvent={pwCheck} />
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
-
-export default MemberChangePw;
+export default MemberChagnePw;

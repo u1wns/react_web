@@ -1,13 +1,29 @@
-.password-tbl {
-  width: 100%;
-  border-spacing: 0;
-  border-top: 2px solid #8294c4;
+.new-pw-input-wrap {
+  padding: 20px 0px;
   border-bottom: 2px solid #8294c4;
-  padding: 10px;
+  border-top: 2px solid #8294c4;
 }
-.password-tbl > tbody > tr > td:first-child {
-  width: 30%;
+
+.pw-input-wrap > div {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 10px 0px;
 }
-.password-tbl > tbody > tr > td {
-  padding: 20px 10px;
+.pw-input-wrap > div > label {
+  width: 20%;
+  color: #8294c4;
+  font-size: 18px;
+  font-family: ns-b;
+}
+.pw-input-wrap > div > input {
+  width: 50%;
+  margin: 0px 35px;
+}
+.pw-input-wrap > div > button {
+  width: 20%;
+}
+.change-btn-box {
+  margin-top: 30px;
+  color: #fff;
 }

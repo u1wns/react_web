@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import MemberMain from "./component/member/MemberMain";
 
 function App() {
-  const [isLogin, setIsLogin] = useState(null);
+  const [isLogin, setIsLogin] = useState(true);
   //useEffect hooks : 초기 state값을 최초에 수정해서 사용하는 경우
   //                  re-render가 무한반복이 일어나는데 이걸 해결하기위한 hooks
   //    window.onload = function() {}를 대체 해주는 hooks

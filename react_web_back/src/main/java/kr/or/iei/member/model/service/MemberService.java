@@ -52,4 +52,12 @@ public class MemberService {
 		// TODO Auto-generated method stub
 		return memberDao.delete(memberId);
 	}
+
+	public int pwCheck(Member member) {
+		Member m = memberDao.selectOneMember(member.getMemberId());
+		if( m != null && bCryptPasswordEncoder.matches(member.getMemberPw(), m.getMemberPw())) {
+			return 1;
+		}
+		return 0;
+	}
 }
