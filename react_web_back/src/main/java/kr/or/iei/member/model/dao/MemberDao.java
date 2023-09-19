@@ -11,4 +11,8 @@ public interface MemberDao {
 
 	int insertMember(Member member);
 
+	int changePhone(Member member);
+
+	int deleteMember(int memberNo);
+
 }

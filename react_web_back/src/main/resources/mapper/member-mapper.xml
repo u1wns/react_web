@@ -10,6 +10,11 @@
  		insert into member_tbl values(member_seq.nextval,#{memberId},#{memberPw},#{memberName},#{memberPhone},2)
  	</insert>
  	
+ 	<update id="changePhone">
+ 		update member_tbl set member_phone = #{memberPhone} where member_no=#{memberNo}
+ 	</update>
  	
- 	 
+ 	<delete id="deleteMember">
+ 		delete from member_tbl where member_no=#{memberNo}
+ 	</delete>
 </mapper>

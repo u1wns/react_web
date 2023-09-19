@@ -43,4 +43,13 @@ public class MemberService {
 			return "실패";
 		}
 	}
+	@Transactional
+	public int changePhone(Member member) {
+		return memberDao.changePhone(member);
+	}
+
+	public int deleteMember(int memberNo) {
+		// TODO Auto-generated method stub
+		return memberDao.deleteMember(memberNo);
+	}
 }

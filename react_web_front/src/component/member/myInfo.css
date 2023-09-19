@@ -1,0 +1,36 @@
+/* 
+색상 
+#8294C4 rgb(130, 148, 196)
+#ACB1D6 rgb(172, 177, 214)
+#DBDFEA rgb(219, 223, 234)
+#FFEAD2 rgb(255, 234, 210)
+*/
+.my-info-tbl {
+  width: 100%;
+  border-spacing: 0;
+  border-top: 2px solid #8294c4;
+  border-bottom: 2px solid #8294c4;
+  padding: 10px;
+}
+.my-info-tbl > tbody > tr > td:first-child {
+  width: 30%;
+}
+.my-info-tbl > tbody > tr > td {
+  padding: 20px 10px;
+}
+#member-phone {
+  padding: 0;
+}
+#member-phone > div {
+  display: flex;
+  justify-content: space-between;
+}
+#member-phone > div > input {
+  width: 60%;
+}
+#member-phone > div > button {
+  width: 30%;
+}
+.delete-btn-box {
+  margin-top: 50px;
+}

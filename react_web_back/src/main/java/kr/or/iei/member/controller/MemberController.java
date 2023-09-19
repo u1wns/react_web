@@ -51,4 +51,15 @@ public class MemberController {
 	public Member mypage(@RequestAttribute String memberId) {
 		return memberService.selectOneMember(memberId);
 	}
+	@PostMapping(value="/changePhone")
+	public int changePhone(@RequestBody Member member) {
+		return memberService.changePhone(member);
+	}
+	@PostMapping(value="/deleteMember")
+	public String deleteMember(Member m) {
+		int memberNo = m.getMemberNo();
+		int result = memberService.deleteMember(memberNo);
+		
+		return null;
+	}
 }
