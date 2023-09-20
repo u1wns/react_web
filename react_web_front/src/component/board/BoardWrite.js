@@ -1,5 +1,7 @@
 import { useState } from "react";
 import BoardFrm from "./BoardFrm";
+import Swal from "sweetalert2";
+import axios from "axios";
 
 const BoardWrite = () => {
   //제목, 썸네일, 내용, 첨부파일 > 전송용 데이터를 담을 state
@@ -17,6 +19,28 @@ const BoardWrite = () => {
     console.log(thumbnail);
     console.log(boardDetail);
     console.log(boardFile);
+    if (boardTitle !== "" && boardDetail !== "") {
+      //기본적인 문자열 또는 숫자 데이터를 전송하는 경우에는 json을 전송
+      //파일이 포함되어있는 경우 > FormData를 사용
+      const form = new FormData();
+      form.append("boardTItle", boardTitle);
+      form.append("boardDetail", boardDetail);
+      form.append("thumbnail", thumbnail); //첨부파일을 전송하는 경우 file 객체를 전송
+      //첨부파일이 여러개인 경우 (multiple인 경우 > 같은 이름으로 첨부파일이 여러개인 경우)
+      for (let i = 0; i < boardFile.length; i++) {
+        form.append("boardFile", boardFile[i]);
+      }
+      const token = window.localStorage.getItem("token");
+      axios.post("/board/insert", form, {
+        headers: {
+          contentType: "multipart/form-data",
+          processData: false,
+          Authorization: "Bearer " + token,
+        },
+      });
+    } else {
+      Swal.fire("입력 값을 확인하세요.");
+    }
   };
   return (
     <div>
