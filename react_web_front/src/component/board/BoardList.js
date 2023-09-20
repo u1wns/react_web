@@ -1,8 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Pagination from "../common/Pagination";
+import { Button1 } from "../util/Buttons";
 
-const BoardList = () => {
+const BoardList = (props) => {
+  const isLogin = props.isLogin;
   const [boardList, setBoardList] = useState([]);
   const [reqPage, setReqPage] = useState(1);
   const [pageInfo, setPageInfo] = useState({});
@@ -17,9 +19,16 @@ const BoardList = () => {
       .catch((res) => {
         console.log(res.response.status);
       });
-  }, []);
+  }, [reqPage]);
   return (
     <div>
+      {isLogin ? (
+        <div className="board-write-btn">
+          <Button1 text="글쓰기" />
+        </div>
+      ) : (
+        ""
+      )}
       <div className="board-list-wrap">
         {boardList.map((board, index) => {
           return <BoardItem key={"board" + index} board={board} />;

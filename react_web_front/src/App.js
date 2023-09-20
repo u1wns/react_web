@@ -28,7 +28,10 @@ function App() {
       <Header isLogin={isLogin} setIsLogin={setIsLogin} />
       <div className="content">
         <Routes>
-          <Route path="/board" element={<BoardMain />} />
+          <Route
+            path="/board"
+            element={<BoardMain isLogin={isLogin} setIsLogin={setIsLogin} />}
+          />
           <Route path="/join" element={<Join />} />
           <Route path="/login" element={<Login setIsLogin={setIsLogin} />} />
           <Route

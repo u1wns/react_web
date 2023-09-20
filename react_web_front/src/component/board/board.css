@@ -56,3 +56,13 @@
   font-size: 0.9em;
   font-family: ns-b;
 }
+.board-page {
+  margin-top: 30px;
+}
+.board-write-btn {
+  padding: 20px 0px;
+}
+.board-write-btn > button {
+  width: 100px;
+  color: #fff;
+}
