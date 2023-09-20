@@ -60,9 +60,8 @@ public class MemberService {
 		}
 		return 0;
 	}
-
-	public int changePassword(Member member) {
-		// TODO Auto-generated method stub
-		return memberDao.changePassword(member);
+	@Transactional
+	public int pwChangeMember(Member member) {
+		return memberDao.changePw(member);
 	}
 }

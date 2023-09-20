@@ -15,6 +15,6 @@ public interface MemberDao {
 
 	int delete(String memberId);
 
-	int changePassword(Member member);
+	int changePw(Member member);
 
 }

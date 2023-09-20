@@ -18,7 +18,8 @@
  		delete from member_tbl where member_id=#{memberId}
  	</delete>
  	
- 	<update id="changePassword">
- 		update member_tbl member_pw = #{memberPw} where member_no=#{memberNo}
+ 	<update id="changePw">
+ 		update member_tbl set member_pw = #{memberPw} where member_id=#{memberId}
  	</update>
+ 	
 </mapper>

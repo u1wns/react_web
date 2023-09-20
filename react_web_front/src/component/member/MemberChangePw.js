@@ -12,13 +12,6 @@ const MemberChagnePw = (props) => {
   const [memberPw, setMemberPw] = useState("");
   const [memberPwRe, setMemberPwRe] = useState("");
   const token = window.localStorage.getItem("token");
-  const member = props.member;
-  const setMember = props.setMember;
-  const navigate = useNavigate();
-  const setMemberPassword = (data) => {
-    member.memberPassword = data;
-    setMember({ ...member });
-  };
   const pwCheck = () => {
     axios
       .post(
@@ -41,29 +34,33 @@ const MemberChagnePw = (props) => {
         }
       });
   };
-  const changePw = (props) => {
-    const setIsLogin = props.setIsLogin;
-
-    const token = window.localStorage.getItem("token");
-    axios
-      .post("/member/changePassword", member, {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      })
-      .then((res) => {
-        Swal.fire({
-          icon: "success",
-          title: "비밀번호가 변경되었습니다.",
+  const changePw = () => {
+    if (memberPw !== "" && memberPw === memberPwRe) {
+      axios
+        .post(
+          "/member/changePw",
+          { memberPw },
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
+        )
+        .then((res) => {
+          if (res.data === 1) {
+            setIsPwauth(false);
+            setCurrPw("");
+            setMemberPw("");
+            setMemberPwRe("");
+          } else {
+            Swal.fire(
+              "비밀번호 변경 중 문제가 발생했습니다. 잠시 후 다시 시도해주세요."
+            );
+          }
         });
-      })
-      .catch((res) => {
-        if (res.response.status === 403) {
-          navigate("/login");
-          window.localStorage.removeItem("token");
-          setIsLogin(false);
-        }
-      });
+    } else {
+      Swal.fire("비밀번호를 확인해주세요.");
+    }
   };
   return (
     <div className="my-content-wrap">
