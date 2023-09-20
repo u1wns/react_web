@@ -29,7 +29,7 @@ function App() {
       <div className="content">
         <Routes>
           <Route
-            path="/board"
+            path="/board/*"
             element={<BoardMain isLogin={isLogin} setIsLogin={setIsLogin} />}
           />
           <Route path="/join" element={<Join />} />

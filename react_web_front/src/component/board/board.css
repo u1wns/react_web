@@ -66,3 +66,9 @@
   width: 100px;
   color: #fff;
 }
+.board-frm-title {
+  font-size: 18px;
+  color: #acb1d6;
+  font-family: ns-b;
+  padding: 30px 0px;
+}

@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Pagination from "../common/Pagination";
 import { Button1 } from "../util/Buttons";
+import { useNavigate } from "react-router-dom";
 
 const BoardList = (props) => {
   const isLogin = props.isLogin;
@@ -20,11 +21,15 @@ const BoardList = (props) => {
         console.log(res.response.status);
       });
   }, [reqPage]);
+  const navigate = useNavigate();
+  const write = () => {
+    navigate("write");
+  };
   return (
     <div>
       {isLogin ? (
         <div className="board-write-btn">
-          <Button1 text="글쓰기" />
+          <Button1 text="글쓰기" clickEvent={write} />
         </div>
       ) : (
         ""
