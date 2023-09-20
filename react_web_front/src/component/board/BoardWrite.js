@@ -31,13 +31,20 @@ const BoardWrite = () => {
         form.append("boardFile", boardFile[i]);
       }
       const token = window.localStorage.getItem("token");
-      axios.post("/board/insert", form, {
-        headers: {
-          contentType: "multipart/form-data",
-          processData: false,
-          Authorization: "Bearer " + token,
-        },
-      });
+      axios
+        .post("/board/insert", form, {
+          headers: {
+            contentType: "multipart/form-data",
+            processData: false,
+            Authorization: "Bearer " + token,
+          },
+        })
+        .then((res) => {
+          console.log(res.data);
+        })
+        .catch((res) => {
+          console.log(res.response.status);
+        });
     } else {
       Swal.fire("입력 값을 확인하세요.");
     }
