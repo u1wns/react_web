@@ -23,7 +23,7 @@ const BoardWrite = () => {
       //기본적인 문자열 또는 숫자 데이터를 전송하는 경우에는 json을 전송
       //파일이 포함되어있는 경우 > FormData를 사용
       const form = new FormData();
-      form.append("boardTItle", boardTitle);
+      form.append("boardTitle", boardTitle);
       form.append("boardDetail", boardDetail);
       form.append("thumbnail", thumbnail); //첨부파일을 전송하는 경우 file 객체를 전송
       //첨부파일이 여러개인 경우 (multiple인 경우 > 같은 이름으로 첨부파일이 여러개인 경우)
