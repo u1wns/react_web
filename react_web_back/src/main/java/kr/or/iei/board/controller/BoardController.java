@@ -90,7 +90,7 @@ public class BoardController {
 		String encodeFile = URLEncoder.encode(boardFile.getFilename(),"UTF-8");
 		
 		HttpHeaders header= new HttpHeaders();
-		header.add("Content-Disposition", "attachment; filename\""+encodeFile+"\"");
+		header.add("Content-Disposition", "attachment; filename=\""+encodeFile+"\"");
         header.add("Cache-Control", "no-cache, no-store, must-revalidate");
 		header.add("Pragma", "no-cache");
 		header.add("Expires", "0");

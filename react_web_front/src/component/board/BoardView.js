@@ -67,6 +67,7 @@ const FileItem = (props) => {
         //파일명 디코딩하는 함수
         const downloadFilename = (data) => {
           const disposition = data.headers["content-disposition"];
+
           const filename = decodeURI(
             disposition
               .match(/filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/)[1]
@@ -74,6 +75,12 @@ const FileItem = (props) => {
           );
           return filename;
         };
+        //다운로드할 파일 이름 지정
+        link.download = downloadFilename(res);
+        document.body.appendChild(link); //파일과 연결된 a태그를 문서에 추가
+        link.click(); //a태그를 클릭해서 다운로드
+        //link.remove();
+        window.URL.revokeObjectURL(fileObjectUrl); //파일링크삭제
       })
       .catch((res) => {
         console.log(res.response.status);
