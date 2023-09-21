@@ -19,4 +19,10 @@ public interface BoardDao {
 
 	int insertBoardFile(BoardFile boardFile);
 
+	Board selectOneBoard(int boardNo);
+
+	List selectOneBoardFile(int boardNo);
+
+	BoardFile getBoardFile(int boardFileNo);
+
 }

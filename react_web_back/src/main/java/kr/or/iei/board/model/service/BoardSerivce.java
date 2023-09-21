@@ -58,4 +58,15 @@ public class BoardSerivce {
 			return 0;
 		}
 	}
+	public Board selectOneBoard(int boardNo) {
+		Board b = boardDao.selectOneBoard(boardNo);
+		//List fileList = boardDao.selectOneBoardFile(boardNo);
+		//b.setFileList(fileList);
+		
+		return b;
+	}
+	public BoardFile getBoardFile(int boardFileNo) {
+		
+		return boardDao.getBoardFile(boardFileNo);
+	}
 }

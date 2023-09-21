@@ -1,13 +1,24 @@
 package kr.or.iei.board.controller;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.http.HttpHeaders;
 
 import kr.or.iei.FileUtil;
 import kr.or.iei.board.model.service.BoardSerivce;
@@ -62,5 +74,32 @@ public class BoardController {
 		}
 		int result = boardSerivce.insertBoard(b,fileList);
 		return result;
+	}
+	@GetMapping(value="/view/{boardNo}")
+	public Board view(@PathVariable int boardNo) {
+		return boardSerivce.selectOneBoard(boardNo);
+	}
+	//파일 다운로드용 리턴타입
+	@GetMapping(value="/filedown/{boardFileNo}")
+	public ResponseEntity<Resource> filedown(@PathVariable int boardFileNo) throws FileNotFoundException, UnsupportedEncodingException{
+		BoardFile boardFile = boardSerivce.getBoardFile(boardFileNo);
+		System.out.println(boardFile);
+		String savepath = root+"board/";
+		File file = new File(savepath+boardFile.getFilepath());
+		Resource resource = new InputStreamResource(new FileInputStream(file));
+		String encodeFile = URLEncoder.encode(boardFile.getFilename(),"UTF-8");
+		
+		HttpHeaders header= new HttpHeaders();
+		header.add("Content-Disposition", "attachment; filename\""+encodeFile+"\"");
+        header.add("Cache-Control", "no-cache, no-store, must-revalidate");
+		header.add("Pragma", "no-cache");
+		header.add("Expires", "0");
+		
+		return ResponseEntity
+				.status(HttpStatus.OK)
+				.headers(header)
+				.contentLength(file.length())
+				.contentType(MediaType.APPLICATION_OCTET_STREAM)
+				.body(resource);
 	}
 }

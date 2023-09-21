@@ -39,6 +39,44 @@
 		(board_file_seq.nextval, #{boardNo},#{filename},#{filepath})
 	</insert>
 
-
+	<select id="selectOneBoard" resultMap="getBoard">
+		select 
+			board_no,
+			board_title,
+			board_img,
+			board_writer,
+			member_id,
+			board_detail,
+			board_status,
+			to_char(board_date,'yyyy-mm-dd hh:mm:ss') as board_date
+		from board
+		join member_tbl on (board_writer = member_no)
+		where board_no = #{boardNo}
+	</select>
+	
+	<select id="selectOneBoardFile" resultType="boardFile">
+		select * from board_file where board_no = #{boardNo}
+	</select>
+	<resultMap type="board" id="getBoard">
+		<result column="board_no" property="boardNo"/>
+		<result column="board_title" property="boardTitle"/>
+		<result column="board_img" property="boardImg"/>
+		<result column="board_writer" property="boardWriter"/>
+		<result column="member_id" property="memberId"/>
+		<result column="board_detail" property="boardDetail"/>
+		<result column="board_status" property="boardStatus"/>
+		<result column="board_date" property="boardDate"/>
+		<collection 
+			property="fileList"
+			select="selectOneBoardFile"
+			column = "board_no"
+			javaType="java.util.List"
+			ofType="boardFile"	
+		 />
+	</resultMap>
+	
+	<select id="getBoardFile" resultType="boardFile">
+		select * from board_file where board_file_no=#{boardFileNo}
+	</select>
 
 </mapper>
