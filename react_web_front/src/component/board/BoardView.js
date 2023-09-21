@@ -39,7 +39,10 @@ const BoardView = (props) => {
           <img src="/image/default.png" />
         )}
       </div>
-      <div className="board-view-detail">{board.boardDetail}</div>
+      <div
+        className="board-view-detail"
+        dangerouslySetInnerHTML={{ __html: board.boardDetail }}
+      ></div>
     </div>
   );
 };

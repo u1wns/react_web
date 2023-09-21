@@ -102,4 +102,11 @@ public class BoardController {
 				.contentType(MediaType.APPLICATION_OCTET_STREAM)
 				.body(resource);
 	}
+	@PostMapping(value="/contentImg")
+	public String contentImg(@ModelAttribute MultipartFile image) {
+		String savepath = root+"board/editor/";
+		String filename = image.getOriginalFilename();
+		String filepath = fileUtil.getFilepath(savepath, filename, image);
+		return "/board/editor/"+filepath;
+	}
 }
