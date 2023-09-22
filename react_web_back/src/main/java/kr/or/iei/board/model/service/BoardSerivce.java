@@ -69,4 +69,13 @@ public class BoardSerivce {
 		
 		return boardDao.getBoardFile(boardFileNo);
 	}
+	@Transactional
+	public List<BoardFile> delete(int boardNo) {
+		List<BoardFile> list = boardDao.selectBoardFileList(boardNo);
+		int result = boardDao.deleteBoard(boardNo);
+		if(result > 0 ) {
+			return list;
+		}
+		return null; //삭제 실패
+	}
 }

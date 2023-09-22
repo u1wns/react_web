@@ -109,4 +109,19 @@ public class BoardController {
 		String filepath = fileUtil.getFilepath(savepath, filename, image);
 		return "/board/editor/"+filepath;
 	}
+	@GetMapping(value="/delete/{boardNo}")
+	public int deleteBoard(@PathVariable int boardNo) {
+		//해당 게시글 첨부파일 삭제를 위해 파일목록을 결과로 받음
+		List<BoardFile> fileList = boardSerivce.delete(boardNo);
+		if(fileList != null) {
+			String savepath = root+"board/";
+			for(BoardFile boardFile : fileList ) {
+				File file = new File(savepath+boardFile.getFilepath());
+				file.delete();
+			}
+			return 1;
+		}else {
+			return 0;
+		}
+	}
 }

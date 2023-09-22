@@ -185,3 +185,11 @@
 .board-content-box .ql-container {
   height: 400px;
 }
+/* boardView 수정/삭제 버튼*/
+.board-view-btn-zone {
+  padding: 20px 0px;
+}
+.board-view-btn-zone > button {
+  width: 60px;
+  margin-right: 20px;
+}
