@@ -130,6 +130,9 @@ public class BoardController {
 		//썸네일이 들어오면  > 썸네일 교체, 썸네일 없으면 기존 썸네일로 덮어쓰기
 		//board_file 테이블 업데이트는 삭제한게 있으면 삭제, 추가한거 있으면 insert
 		//삭제한 파일 있으면 물리적 삭제
+		if(b.getBoardImg().equals("null")) {
+			b.setBoardImg(null);
+		}
 		String savepath = root+"board/";
 		if(thumbnail != null) {
 			String filepath = fileUtil.getFilepath(savepath, thumbnail.getOriginalFilename(), thumbnail);
