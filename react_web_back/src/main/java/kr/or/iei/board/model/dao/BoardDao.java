@@ -29,4 +29,10 @@ public interface BoardDao {
 
 	int deleteBoard(int boardNo);
 
+	List<BoardFile> selectBoardFile(String[] delFileNo);
+
+	int deleteBoardFile(String[] delFileNo);
+
+	int updateBoard(Board b);
+
 }

@@ -78,4 +78,27 @@ public class BoardSerivce {
 		}
 		return null; //삭제 실패
 	}
+	@Transactional
+	public List<BoardFile> modify(Board b, ArrayList<BoardFile> fileList) {
+		List<BoardFile> delFileList = new ArrayList<BoardFile>();
+		String [] delFileNo = {};
+		int result = 0;
+		if(!b.getDelFileNo().equals("")) {
+			//1. 삭제할 파일이 있으면 조회
+			delFileNo = b.getDelFileNo().split("/");
+			delFileList = boardDao.selectBoardFile(delFileNo);
+			//2. 삭제할 파일 삭제
+			result += boardDao.deleteBoardFile(delFileNo);
+		}
+		//3. 추가할 파일이 있으면 추가
+		for(BoardFile bf : fileList) {
+			result += boardDao.insertBoardFile(bf);
+		}
+		//4. board 테이블 변경
+		result += boardDao.updateBoard(b);
+		if(result == 1+fileList.size()+delFileNo.length) {
+			return delFileList;
+		}
+		return null;
+	}
 }

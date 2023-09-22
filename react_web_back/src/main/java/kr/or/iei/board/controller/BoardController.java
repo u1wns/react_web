@@ -124,4 +124,39 @@ public class BoardController {
 			return 0;
 		}
 	}
+	@PostMapping(value="/modify")
+	public int modify(@ModelAttribute Board b, @ModelAttribute MultipartFile thumbnail,@ModelAttribute MultipartFile[] boardFile) {
+		//board table 업데이트
+		//썸네일이 들어오면  > 썸네일 교체, 썸네일 없으면 기존 썸네일로 덮어쓰기
+		//board_file 테이블 업데이트는 삭제한게 있으면 삭제, 추가한거 있으면 insert
+		//삭제한 파일 있으면 물리적 삭제
+		String savepath = root+"board/";
+		if(thumbnail != null) {
+			String filepath = fileUtil.getFilepath(savepath, thumbnail.getOriginalFilename(), thumbnail);
+			b.setBoardImg(filepath);
+		}
+		ArrayList<BoardFile> fileList = new ArrayList<BoardFile>();
+		if(boardFile != null) {
+			for(MultipartFile file : boardFile) {
+				String filename = file.getOriginalFilename();
+				String filepath = fileUtil.getFilepath(savepath, filename, file);
+				BoardFile bf = new BoardFile();
+				bf.setBoardNo(b.getBoardNo());
+				bf.setFilename(filename);
+				bf.setFilepath(filepath);
+				fileList.add(bf);
+			}
+		}
+		//db에서 삭제한 파일이 있으면 실제로도 삭제하기 위해서
+		List<BoardFile> delFileList = boardSerivce.modify(b,fileList);
+		if(delFileList != null) {
+			for(BoardFile bf : delFileList) {
+				File delFile =  new File(savepath+bf.getFilepath());
+				delFile.delete();
+			}
+			return 1;
+		}else {
+			return 0;
+		}
+	}
 }
