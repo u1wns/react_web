@@ -79,7 +79,7 @@ const BoardItem = (props) => {
         console.log(res);
       });
   };
-  setStatus(e.target.checked);
+  //setStatus(e.target.checked);
   return (
     <tr>
       <td>{board.boardNo}</td>
