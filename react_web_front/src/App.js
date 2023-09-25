@@ -4,8 +4,9 @@ import { Routes, Route } from "react-router-dom";
 import Join from "./component/member/Join";
 import Login from "./component/member/Login";
 import { useEffect, useState } from "react";
-import MemberMain from "./component/member/MemberMain";
+import { MemberMain } from "./component/member/MemberMain";
 import BoardMain from "./component/board/BoardMain";
+import AdminMain from "./component/admin/AdminMain";
 
 function App() {
   const [isLogin, setIsLogin] = useState(true);
@@ -28,6 +29,7 @@ function App() {
       <Header isLogin={isLogin} setIsLogin={setIsLogin} />
       <div className="content">
         <Routes>
+          <Route path="/admin/*" element={<AdminMain isLogin={isLogin} />} />
           <Route
             path="/board/*"
             element={<BoardMain isLogin={isLogin} setIsLogin={setIsLogin} />}

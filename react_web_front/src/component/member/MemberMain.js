@@ -23,7 +23,18 @@ const MemberMain = (props) => {
       .then((res) => {
         console.log(res.data);
         setMember(res.data);
-        document.querySelectorAll(".my-side a")[0].click();
+        if (res.data && res.data.memberType === 1) {
+          const adminMenu = {
+            url: "/admin",
+            text: "관리자 페이지",
+            active: false,
+          };
+          // const arr = [...menus];
+          // arr.push(adminMenu);
+          // setMenus(arr);
+          setMenus([...menus, adminMenu]);
+        }
+        //document.querySelectorAll(".my-side a")[0].click();
       })
       .catch((res) => {
         if (res.response.status === 403) {
@@ -76,6 +87,7 @@ const MemberMain = (props) => {
 const MySideMenu = (props) => {
   const menus = props.menus;
   const setMenus = props.setMenus;
+  console.log(menus);
   const activeTab = (index) => {
     menus.forEach((item) => {
       item.active = false;
@@ -118,4 +130,4 @@ const MySideMenu = (props) => {
     </div>
   );
 };
-export default MemberMain;
+export { MemberMain, MySideMenu };

@@ -3,8 +3,6 @@ const Pagination = (props) => {
   const pageInfo = props.pageInfo;
   const reqPage = props.reqPage;
   const setReqPage = props.setReqPage;
-  console.log(reqPage);
-  console.log(pageInfo);
   const changePage = (e) => {
     const changePage = e.currentTarget.innerText;
     setReqPage(changePage);
@@ -40,7 +38,6 @@ const Pagination = (props) => {
   //페이징 숫자
   let pageNo = pageInfo.pageNo;
   for (let i = 0; i < pageInfo.pageNaviSize; i++) {
-    console.log(pageNo);
     if (pageNo === Number(reqPage)) {
       arr.push(
         <span

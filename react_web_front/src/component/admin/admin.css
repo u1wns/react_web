@@ -1,0 +1,56 @@
+/* 
+색상 
+#8294C4 rgb(130, 148, 196)
+#ACB1D6 rgb(172, 177, 214)
+#DBDFEA rgb(219, 223, 234)
+#FFEAD2 rgb(255, 234, 210)
+*/
+
+.admin-member-tbl-box > table {
+  width: 100%;
+  border-spacing: 0;
+}
+.admin-member-tbl-box > table td {
+  text-align: center;
+  padding: 5px;
+  border: 1px solid #eee;
+}
+.admin-member-tbl-box > table > thead td {
+  background-color: #8294c4;
+  color: #fff;
+}
+.admin-board-tbl > table {
+  width: 100%;
+  border-spacing: 0;
+}
+.admin-board-tbl td {
+  text-align: center;
+  padding: 10px 5px;
+}
+.admin-board-tbl td.title-td {
+  text-align: left;
+}
+.admin-board-tbl td.title-td > div {
+  width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.admin-board-tbl > table > thead td {
+  border-bottom: 2px solid #8294c4;
+  border-top: 2px solid #8294c4;
+  color: #8294c4;
+  font-family: ns-b;
+}
+.admin-board-tbl > table > tbody td {
+  border-bottom: 1px solid #eee;
+}
+.status-td .PrivateSwitchBase-input + span {
+  color: #fff;
+}
+.status-td .PrivateSwitchBase-input:checked + span {
+  background-color: #8294c4;
+}
+.status-td .css-5ryogn-MuiButtonBase-root-MuiS {
+  background-color: #8294c4;
+}

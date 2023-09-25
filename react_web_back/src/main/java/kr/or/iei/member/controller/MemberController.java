@@ -1,5 +1,7 @@
 package kr.or.iei.member.controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import kr.or.iei.board.model.service.BoardSerivce;
+import kr.or.iei.board.model.vo.Board;
 import kr.or.iei.member.model.service.MemberService;
 import kr.or.iei.member.model.vo.Member;
 
@@ -68,4 +72,13 @@ public class MemberController {
 		member.setMemberId(memberId);
 		return memberService.pwChangeMember(member);
 	}
+	@GetMapping(value="/list/{reqPage}")
+	public Map list(@PathVariable int reqPage) {
+		return memberService.memberList(reqPage);
+	}
+	@PostMapping(value="/changeType")
+	public int changeType(@RequestBody Member member) {
+		return memberService.changeType(member);
+	}
+
 }
